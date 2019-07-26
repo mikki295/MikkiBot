@@ -7,7 +7,7 @@ def __get_info_one(url):
     time = soup.find("div",{"class" : "card__time_start"}).get_text()
     description = soup.find("section",{"class" : "card__description"}).get_text()
     tag = soup.find("img",{"class" : "channel__logo"})
-    return time + 'kanavalla: ' + tag['alt'], description
+    return time + ' kanavalla: ' + tag['alt'], description
 
 def __get_info_all(href_list):
     all_info = []
@@ -15,6 +15,17 @@ def __get_info_all(href_list):
         all_info.append(__get_info_one(link))
     
     return all_info
+
+def __formatted_info(all_info):
+    string = ''
+    if (len(all_info) == 0):
+        string += "Valitettavasti tänään ei tule temppareita :("
+    else:
+        for info in all_info:
+            string += '\n\n*{}*\n{}'.format(info[0],info[1])
+            # string += info[0] + '\n\n' + info[1] + '\n\n'
+
+    return string
 
 def get_info():
     '''returns a matrix of matrix[set][time = 0, description = 1]'''
@@ -29,4 +40,4 @@ def get_info():
 
     info = __get_info_all(href_links)
 
-    return info
+    return __formatted_info(info)

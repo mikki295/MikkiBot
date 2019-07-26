@@ -2,9 +2,7 @@ import os
 import logging
 from dotenv import load_dotenv
 from telegram.ext import Updater, CommandHandler
-import ohjelma
-
-
+from bot import tempparit
 
 
 def main():
@@ -16,7 +14,11 @@ def main():
         level = logging.INFO
     )
 
+    updater = Updater(token = os.getenv('TOKEN'))
 
-    
+    command_handlers = [
+        CommandHandler('tempparit',tempparit, pass_args=True)
+    ]
+
 
 main()
