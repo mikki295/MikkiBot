@@ -19,10 +19,11 @@ def __get_info_all(href_list):
 def __formatted_info(all_info):
     string = ''
     if (len(all_info) == 0):
-        string += "Valitettavasti tänään ei tule temppareita :("
+        string += "Valitettavasti tanaan ei tule temppareita :("
     else:
         for info in all_info:
-            string += '\n\n*{}*\n{}'.format(info[0],info[1])
+            string += info[0] + '\n' + info[1] + '\n\n'
+            #string += '\n\n*{}*\n{}'.format(info[0],info[1])
             # string += info[0] + '\n\n' + info[1] + '\n\n'
 
     return string
@@ -35,7 +36,7 @@ def get_info():
     href_links = []
 
     for link in soup.find_all('a'):
-        if ("salatut-elamat" in link.get('href')):
+        if ("the-gifted" in link.get('href')):
             href_links.append(url + link.get('href'))    
 
     info = __get_info_all(href_links)
