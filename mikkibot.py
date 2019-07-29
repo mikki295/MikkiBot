@@ -2,7 +2,7 @@ import os
 import logging
 from dotenv import load_dotenv
 from telegram.ext import Updater, CommandHandler
-from bot import tempparit
+from bot import tempparitToday, tempparitSchedule
 from ohjelma import get_info, get_week_schedule
 
 
@@ -17,13 +17,13 @@ def main():
 
     updater = Updater(token = '962049728:AAF0f94vBresgG971TYhKdbg_qSHsRQVhIk')
     #updater = Updater(token = os.getenv('TOKEN'))
-    #print(get_info('http://telkku.com/'))
-    get_week_schedule()
+    print(get_info())
 
 #This section is for handling telegram commands
 
 #    command_handlers = [
-#        CommandHandler('tempparit',tempparit, pass_args=True)
+#        CommandHandler('tempparit_tanaan',tempparitToday, pass_args=True),
+#        CommandHandler('tempparit_viikolla',tempparitSchedule, pass_args=True)
 #    ]
 #
 #    for handler in command_handlers:
