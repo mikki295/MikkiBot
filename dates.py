@@ -4,23 +4,28 @@ def today():
     date = datetime.date.today()
     return date
 
-def dates_of_week():
-    '''Returns days of the week'''
+def dates_of_current_week():
     dates = []
-    #weekday = today().isoweekday()
-    weekday = datetime.date(2019,7,24).isoweekday()
+    first_day = first_date_of_week()
+
+    for i in range(8):
+        day = first_day + datetime.timedelta(days=i)
+        dates.append(day)
+
 
 def week_number_today():
-    return datetime.date(today().year,today().month,today().day).isocalendar()[1]
+    return datetime.date(today().year,today().month,today().day).isocalendar()[1] - 1
 
 def week_number(year,month,day):
-    return datetime.date(year,month,day).isocalendar()[1]
+    return datetime.date(year,month,day).isocalendar()[1] - 1
+
+
+def first_date_of_week():
+    first_day = today() - datetime.timedelta(today().weekday())
+    print(first_day)
 
 def main():
     '''main'''
-    dates_of_week()
-
-    print(week_number(2019,7,21))
 
 
 main()
