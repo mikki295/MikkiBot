@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from dates import dates_of_current_week
 
+
 __TELKKU_URL = 'http://telkku.com/'
 
 def __get_time(soup):
@@ -62,6 +63,7 @@ def get_week_schedule():
         day = str(date.day)
         url = 'tv-ohjelmat/' + year + '-' + month + '-' + day + '/peruskanavat/koko-paiva'
         soup = __get_soup(__TELKKU_URL + url)
+        print(__TELKKU_URL + url)
         href_links = __get_hrefs(soup)
         for link in href_links:
             soup = __get_soup(link)
@@ -69,4 +71,7 @@ def get_week_schedule():
 
         schedule += '\n'
         
-    return schedule 
+    if (len(schedule) > 4096):
+        return 'Ah liikaa temppareita!'
+    else:
+        return schedule 
