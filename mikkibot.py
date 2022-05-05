@@ -17,7 +17,7 @@ def main():
         level = logging.INFO
     )
 
-    updater = Updater(token = '962049728:AAF0f94vBresgG971TYhKdbg_qSHsRQVhIk')
+    
     #updater = Updater(token = os.getenv('TOKEN'))
     #print(get_week_schedule())
 
